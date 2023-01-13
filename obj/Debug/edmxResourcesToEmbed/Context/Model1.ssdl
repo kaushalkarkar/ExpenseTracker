@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="expensetrac6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="expense1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ExpenseName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExpenseCategoryID" Type="int" />
+    <Property Name="ExpensePrice" Type="int" Nullable="false" />
+    <Property Name="ExpenseDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpenseDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="expensecate">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ExpenseCategory" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__expense1__Expens__38996AB5">
+    <End Role="expensecate" Type="Self.expensecate" Multiplicity="0..1" />
+    <End Role="expense1" Type="Self.expense1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="expensecate">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="expense1">
+        <PropertyRef Name="ExpenseCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="expensetrac6ModelStoreContainer">
+    <EntitySet Name="expense1" EntityType="Self.expense1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="expensecate" EntityType="Self.expensecate" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__expense1__Expens__38996AB5" Association="Self.FK__expense1__Expens__38996AB5">
+      <End Role="expensecate" EntitySet="expensecate" />
+      <End Role="expense1" EntitySet="expense1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

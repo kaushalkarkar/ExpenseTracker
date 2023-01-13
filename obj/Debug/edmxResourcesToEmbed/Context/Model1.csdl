@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="expensetrac6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="expense1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ExpenseCategoryID" Type="Int32" />
+    <Property Name="ExpensePrice" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpenseDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="expensecate" Relationship="Self.FK__expense1__Expens__38996AB5" FromRole="expense1" ToRole="expensecate" />
+  </EntityType>
+  <EntityType Name="expensecate">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="expense1" Relationship="Self.FK__expense1__Expens__38996AB5" FromRole="expensecate" ToRole="expense1" />
+  </EntityType>
+  <Association Name="FK__expense1__Expens__38996AB5">
+    <End Role="expensecate" Type="Self.expensecate" Multiplicity="0..1" />
+    <End Role="expense1" Type="Self.expense1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="expensecate">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="expense1">
+        <PropertyRef Name="ExpenseCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="expensetrac6Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="expense1" EntityType="Self.expense1" />
+    <EntitySet Name="expensecates" EntityType="Self.expensecate" />
+    <AssociationSet Name="FK__expense1__Expens__38996AB5" Association="Self.FK__expense1__Expens__38996AB5">
+      <End Role="expensecate" EntitySet="expensecates" />
+      <End Role="expense1" EntitySet="expense1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="expensetrac6ModelStoreContainer" CdmEntityContainer="expensetrac6Entities1">
+    <EntitySetMapping Name="expense1">
+      <EntityTypeMapping TypeName="expensetrac6Model.expense1">
+        <MappingFragment StoreEntitySet="expense1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExpenseName" ColumnName="ExpenseName" />
+          <ScalarProperty Name="ExpenseCategoryID" ColumnName="ExpenseCategoryID" />
+          <ScalarProperty Name="ExpensePrice" ColumnName="ExpensePrice" />
+          <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+          <ScalarProperty Name="ExpenseDescription" ColumnName="ExpenseDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="expensecates">
+      <EntityTypeMapping TypeName="expensetrac6Model.expensecate">
+        <MappingFragment StoreEntitySet="expensecate">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ExpenseCategory" ColumnName="ExpenseCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
